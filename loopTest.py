@@ -31,3 +31,9 @@ for x in range(1,8):    # Range with start index
     print(x)
 for x in range(1, 10, 2):   # Increment range by 2
     print(x)
+fruitList = ["Apple", "Peach", "Banana", "Orange", "Cherry"]
+for x in foodList:      # Nested For Loop
+    for y in fruitList:
+        print(x, y)
+for x in fruitList:
+    pass                # Allows for loop to be empty w/o error
