@@ -24,4 +24,4 @@ s1.greetFunc()
 s1.gpa = 4.0
 print(s1.gpa)
 del s1.gpa
-print(s1.gpa)       # Error
+#print(s1.gpa)       # Error
