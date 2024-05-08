@@ -1,11 +1,15 @@
 import tcod
 from engine import Engine
 from input import EventHandler
+from map import GameMap
 from entity import Entity
 
 def main():
     screen_width = 80       # Set width and height of screen
     screen_height = 50
+
+    map_width = 80
+    map_height = 45
 
     tileset = tcod.tileset.load_tilesheet(      # Font
         "dejavu10x10_gs_tc.png", 32, 8, tcod.tileset.CHARMAP_TCOD
@@ -16,7 +20,8 @@ def main():
     player = Entity(int(screen_width/2), int(screen_height/2), "@", (255, 255, 255))
     npc = Entity(int(screen_width/2 - 5), int(screen_height/2), "@", (255, 255, 0))
     entities = {npc, player}
-    engine = Engine(entities=entities, event_handler=event_handler, player=player)
+    game_map = GameMap(map_width, map_height)
+    engine = Engine(entities=entities, event_handler=event_handler, game_map=game_map, player=player)
 
 
     with tcod.context.new_terminal(     # Creates terminal
@@ -31,11 +36,9 @@ def main():
             root_console.print(x =player.x, y = player.y, string = player.char, fg = player.color)  # Print things to console
             engine.render(console=root_console, context=context)
 
-            events = tcod.event.wait()
+            events = tcod.event.wait() # press w
 
             engine.handle_events(events)
-
-            root_console.clear()
-                        
+                      
 if __name__ == "__main__":
     main()
