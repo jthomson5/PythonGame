@@ -3,6 +3,7 @@ from engine import Engine
 from input import EventHandler
 from map import GameMap
 from entity import Entity
+from procGen import generateDungeon
 
 def main():
     screen_width = 80       # Set width and height of screen
@@ -20,7 +21,7 @@ def main():
     player = Entity(int(screen_width/2), int(screen_height/2), "@", (255, 255, 255))
     npc = Entity(int(screen_width/2 - 5), int(screen_height/2), "@", (255, 255, 0))
     entities = {npc, player}
-    game_map = GameMap(map_width, map_height)
+    game_map = generateDungeon(map_width, map_height)
     engine = Engine(entities=entities, event_handler=event_handler, game_map=game_map, player=player)
 
 
